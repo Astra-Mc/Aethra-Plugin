@@ -1,0 +1,5 @@
+name: AstraMC
+version: 1.0.0
+author: Adrian8115/theaddon
+main: astra.plugin
+api: 1.0.14
