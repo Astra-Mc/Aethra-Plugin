@@ -25,7 +25,7 @@ public class JoinAction implements Listener {
                     player.getLoginChainData().getXUID(),
                     player.getLoginChainData().getClientUUID(),
                     player.getLoginChainData().getUsername(),
-                    config.PlayerLanguages.ENGLISH
+                    config.PlayerLanguage.ENGLISH
             );
 
             player.sendTitle("§bWelcome", "§dWe hope you have a great Time on here!", 20, 80, 20);

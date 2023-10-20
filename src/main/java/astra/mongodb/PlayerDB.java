@@ -22,7 +22,7 @@ public class PlayerDB {
         PlayerDB.instance = this;
     }
 
-    public void addPlayerToDB(String xuid, UUID uuid, String name, config.PlayerLanguages language) {
+    public void addPlayerToDB(String xuid, UUID uuid, String name, config.PlayerLanguage language) {
 
         Document playerDocument = new Document();
 
@@ -63,10 +63,10 @@ public class PlayerDB {
         }
     }
 
-    public config.PlayerLanguages getPlayerLanguageFromDB(String xuid) {
+    public config.PlayerLanguage getPlayerLanguageFromDB(String xuid) {
         Document result = MongoDB.getPlayerCollection().find(Filters.eq("xuid", xuid)).first();
         if (result != null) {
-            return result.get("lang", config.PlayerLanguages.class);
+            return result.get("lang", config.PlayerLanguage.class);
         } else {
             return null;
         }
@@ -93,7 +93,7 @@ public class PlayerDB {
         MongoDB.getPlayerCollection().updateOne(filter, update);
     }
 
-    public void updatePlayerLanguageInDB(String xuid, config.PlayerLanguages language) {
+    public void updatePlayerLanguageInDB(String xuid, config.PlayerLanguage language) {
         Bson filter = Filters.eq("xuid", xuid);
         Bson update = Updates.set("lang", language);
         MongoDB.getPlayerCollection().updateOne(filter, update);

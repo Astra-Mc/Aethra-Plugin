@@ -37,7 +37,7 @@ public class MongoDB {
 
             MongoDB.client = MongoClients.create(config.MONGODB_LOGIN_INFO);
 
-            MongoDB.mongoDatabase = client.getDatabase(config.MONGODB_DATABASE_INFO);
+            MongoDB.mongoDatabase = client.getDatabase(config.MONGODB_DATABASE);
             MongoDB.playerCollection = mongoDatabase.getCollection(config.MONGODB_COLLECTION_PLAYER);
 
             new PlayerDB().Start();
