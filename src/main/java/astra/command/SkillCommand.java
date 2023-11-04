@@ -28,11 +28,16 @@ public class SkillCommand extends Command {
         ArrayList<Player> players = list.getResult(0);
 
 
-        if (!players.isEmpty()) {
-            for (Player player: players) {
-                if (player != null) {
-                    SkillSystem.Show(player);
+        if (players != null) {
+            if (!players.isEmpty()) {
+                for (Player player: players) {
+                    if (player != null) {
+                        SkillSystem.Show(player);
+                    }
                 }
+            }
+            else {
+                sender.sendMessage("Found no Player!");
             }
         }
         else {
