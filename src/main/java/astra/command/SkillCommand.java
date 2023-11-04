@@ -24,7 +24,7 @@ public class SkillCommand extends Command {
 
     @Override
     public int execute(CommandSender sender, String commandLabel, Map.Entry<String, ParamList> result, CommandLogger log) {
-        ParamList list = (ParamList) result.getValue();
+        ParamList list = result.getValue();
         ArrayList<Player> players = list.getResult(0);
 
 
