@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class SkillCommand extends Command {
     public SkillCommand() {
-        super("skill", "Shows your skills", "usage");
+        super("skill", "Shows your Skills", "usage");
         this.setPermission(Permission.DEFAULT_OP);
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{CommandParameter.newType("player", true, CommandParamType.TARGET)});
