@@ -37,7 +37,8 @@ public class SkillCommand extends Command {
                 }
             }
             else {
-                sender.sendMessage("Found no Player!");
+                sender.sendMessage("Target not found");
+                return 0;
             }
         }
         else {
