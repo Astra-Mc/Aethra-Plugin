@@ -36,7 +36,7 @@ public class plugin extends PluginBase {
 
     @Override
     public void onEnable() {
-        this.getLogger().info("astra plugin started");
+        this.getLogger().info("Astra plugin started");
         plugin.instance = this;
 
         MongoDB.Start();
@@ -53,7 +53,7 @@ public class plugin extends PluginBase {
 
     @Override
     public void onDisable() {
-        this.getLogger().info("astra plugin shut down");
+        this.getLogger().info("Astra plugin shut down");
 
         MongoDB.Stop();
         LangManager.Stop();
