@@ -45,7 +45,7 @@ jobs:
         tag_name: autoatic_release_${{ github.run_number }}
         release_name: Automatic Release (V ${{ github.run_number }})
         body: |
-          This is an automatic release for the Atlic-MC Skyblock Plugin created by the java build (maven.yml) workflow.
+          This is an automatic Release for the Astra Plugin created by the java build (maven.yml) workflow.
           VERSION: ${{ github.run_number }}
         draft: false
         prerelease: false
@@ -56,6 +56,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: target/atlicmc-1.0.jar
-        asset_name: AtlicMC_v${{ github.run_number }}.jar
+        asset_path: target/astramc-1.0.jar
+        asset_name: Astra_${{ github.run_number }}.jar
         asset_content_type: application/zip
