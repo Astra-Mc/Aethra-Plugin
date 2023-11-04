@@ -27,7 +27,7 @@ public class plugin extends PluginBase {
 
     @Override
     public void onEnable() {
-        this.getLogger().info("Astra plugin started");
+        this.getLogger().info("Astra plugin started!");
         plugin.instance = this;
 
         plugin.mongodb = new MongoDB();
