@@ -1,15 +1,18 @@
 package astra.listener;
 
+import astra.lang.LangConfig;
 import astra.mongodb.PlayerDB;
+import astra.plugin;
+import astra.playerquestsystem.PlayerQuest;
 import cn.nukkit.Player;
-import cn.nukkit.entity.data.LongEntityData;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerJoinEvent;
 
 import astra.config;
-import cn.nukkit.utils.BossBarColor;
-import cn.nukkit.utils.DummyBossBar;
+import cn.nukkit.scheduler.Task;
+
+import java.util.List;
 
 public class JoinAction implements Listener {
 
@@ -20,26 +23,28 @@ public class JoinAction implements Listener {
 
         player.teleport(config.PLUGIN_SPAWN_VECTOR);
 
-        if (!PlayerDB.getInstance().isPlayerInDB(player.getLoginChainData().getXUID())) {
-            PlayerDB.getInstance().addPlayerToDB(
+        if (!PlayerDB.isPlayerInDB(player)) {
+            PlayerDB.addPlayerToDB(
                     player.getLoginChainData().getXUID(),
                     player.getLoginChainData().getClientUUID(),
                     player.getLoginChainData().getUsername(),
-                    config.PlayerLanguage.ENGLISH
+                    LangConfig.Languages.ENGLISH_GB
             );
 
-            player.sendTitle("§bWelcome", "§dWe hope you have a great Time on here!", 20, 80, 20);
-        } else {
+            player.sendTitle("§bWelcome!", "§dWe hope you have a great Time on here!", 20, 80, 20);
+        }
+        else {
             player.sendPopupJukebox("Welcome back!");
         }
 
-        DummyBossBar bossBar = new DummyBossBar
-                .Builder(player)
-                .text("Coins: " + PlayerDB.getInstance().getPlayerCoinsFromDB(player.getLoginChainData().getXUID()))
-                .color(BossBarColor.BLUE)
-                .build();
-
-        player.createBossBar(bossBar);
-        player.setDataProperty(new LongEntityData(999999, bossBar.getBossBarId()));
+        plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
+            @Override
+            public void onRun(int currentTick) {
+                List<PlayerQuest> quests = PlayerDB.getPlayerQuests(player);
+                for (PlayerQuest quest : quests) {
+                    quest.display(player);
+                }
+            }
+        }, 60, true);
     }
 }

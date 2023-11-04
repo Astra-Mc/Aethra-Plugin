@@ -1,7 +1,12 @@
 package astra;
 
-import astra.block.BlockMagicGen;
-import astra.block.BlockMagicGenCooldown;
+import astra.block.BlockOreMagicGen;
+import astra.block.BlockOreMagicGenCooldown;
+import astra.block.BlockWheatGen;
+import astra.block.BlockWheatGenCooldown;
+import astra.command.SkillCommand;
+import astra.lang.LangConfig;
+import astra.lang.LangManager;
 import astra.listener.BlockBreakAction;
 import astra.listener.CoinsUpdateAction;
 import astra.listener.JoinAction;
@@ -14,7 +19,6 @@ import java.util.List;
 public class plugin extends PluginBase {
 
     private static plugin instance;
-    private static MongoDB mongodb;
 
     public static plugin getInstance() {
         return instance;
@@ -22,26 +26,36 @@ public class plugin extends PluginBase {
 
     @Override
     public void onLoad() {
-        Block.registerCustomBlock(List.of(BlockMagicGen.class, BlockMagicGenCooldown.class)); // register Blocks
+        Block.registerCustomBlock(List.of(
+                BlockOreMagicGen.class,
+                BlockOreMagicGenCooldown.class,
+                BlockWheatGen.class,
+                BlockWheatGenCooldown.class
+        )); // register Blocks
     }
 
     @Override
     public void onEnable() {
-        this.getLogger().info("Astra plugin started!");
+        this.getLogger().info("Astra plugin started");
         plugin.instance = this;
 
-        plugin.mongodb = new MongoDB();
-        plugin.mongodb.Start();
+        MongoDB.Start();
+        LangManager.Start();
+
+        getLogger().info(LangManager.getString(LangConfig.Languages.ENGLISH_GB, "block.name.magic-gen"));
 
         getServer().getPluginManager().registerEvents(new BlockBreakAction(), this); // register on block break event
         getServer().getPluginManager().registerEvents(new JoinAction(), this); // register on player join event
         getServer().getPluginManager().registerEvents(new CoinsUpdateAction(), this); // register Event for Coins update
+
+        getServer().getCommandMap().register("skill", new SkillCommand());
     }
 
     @Override
     public void onDisable() {
         this.getLogger().info("Astra plugin shut down");
 
-        plugin.mongodb.Stop();
+        MongoDB.Stop();
+        LangManager.Stop();
     }
 }

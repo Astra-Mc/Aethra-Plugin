@@ -1,5 +1,5 @@
-name: AstraMC
+name: Astra
 version: 1.0.0
-author: Adrian8115/theaddon
+author: Adrian8115/theaddon, ienis
 main: astra.plugin
 api: 1.0.14

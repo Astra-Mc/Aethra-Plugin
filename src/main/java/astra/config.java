@@ -15,11 +15,4 @@ public class config {
     public static final String MONGODB_LOGIN_INFO = "mongodb://localhost:27017";
     public static final String MONGODB_DATABASE = "MongoDB";
     public static final String MONGODB_COLLECTION_PLAYER = "player";
-
-    // UTILS SETTINGS
-    public enum PlayerLanguage {
-        ENGLISH,
-        DEUTSCH
-    }
-
 }

@@ -1,0 +1,26 @@
+package astra.lang.languages;
+
+import astra.lang.LangManager;
+import astra.plugin;
+import io.leangen.geantyref.TypeToken;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+
+public class de_de {
+    public static HashMap<String, String> Init(){
+        InputStream inputStream = LangManager.class.getResourceAsStream("/languages/de-de.json");
+
+        assert inputStream != null;
+        InputStreamReader reader = new InputStreamReader(inputStream);
+        Type type = new TypeToken<HashMap<String, String>>() {}.getType();
+
+        HashMap<String, String> data = LangManager.getGson().fromJson(reader, type);
+
+        plugin.getInstance().getLogger().info("INITIALIZED DE-DE\n"+data);
+
+        return data;
+    }
+}
