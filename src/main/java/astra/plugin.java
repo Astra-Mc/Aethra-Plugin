@@ -3,15 +3,14 @@ package astra;
 import astra.block.BlockOreMagicGen;
 import astra.block.BlockOreMagicGenCooldown;
 import astra.block.BlockWheatGen;
-import astra.block.BlockWheatGenCooldown;
 import astra.command.SkillCommand;
-import astra.lang.LangConfig;
 import astra.lang.LangManager;
 import astra.listener.BlockBreakAction;
 import astra.listener.CoinsUpdateAction;
 import astra.listener.JoinAction;
 import astra.mongodb.MongoDB;
 import cn.nukkit.block.Block;
+import cn.nukkit.level.Level;
 import cn.nukkit.plugin.PluginBase;
 
 import java.util.List;
@@ -29,20 +28,20 @@ public class plugin extends PluginBase {
         Block.registerCustomBlock(List.of(
                 BlockOreMagicGen.class,
                 BlockOreMagicGenCooldown.class,
-                BlockWheatGen.class,
-                BlockWheatGenCooldown.class
+                BlockWheatGen.class
         )); // register Blocks
+
     }
 
     @Override
     public void onEnable() {
-        this.getLogger().info("Astra plugin started");
+        this.getLogger().info("Astra plugin started!");
         plugin.instance = this;
 
         MongoDB.Start();
         LangManager.Start();
 
-        getLogger().info(LangManager.getString(LangConfig.Languages.ENGLISH_GB, "block.name.magic-gen"));
+        Level.setCanRandomTick(new BlockWheatGen().getId(), true);
 
         getServer().getPluginManager().registerEvents(new BlockBreakAction(), this); // register on block break event
         getServer().getPluginManager().registerEvents(new JoinAction(), this); // register on player join event
@@ -53,7 +52,7 @@ public class plugin extends PluginBase {
 
     @Override
     public void onDisable() {
-        this.getLogger().info("Astra plugin shut down");
+        this.getLogger().info("Astra plugin shut down!");
 
         MongoDB.Stop();
         LangManager.Stop();
