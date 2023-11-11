@@ -21,7 +21,7 @@ public class BlockOreMagicGen extends Block implements CustomBlock {
     @Override
     public CustomBlockDefinition getDefinition() {
         return CustomBlockDefinition
-                .builder(this, "magic_ore") // set block's texture to "magic_ore"
+                .builder(this, "magic_ore_gen") // set block's texture to "magic_ore"
                 .build();
     }
 
