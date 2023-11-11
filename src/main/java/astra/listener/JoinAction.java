@@ -4,6 +4,7 @@ import astra.lang.LangConfig;
 import astra.mongodb.PlayerDB;
 import astra.plugin;
 import astra.playerquestsystem.PlayerQuest;
+import astra.sidepanel.SidePanel;
 import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
@@ -24,7 +25,7 @@ public class JoinAction implements Listener {
         player.teleport(config.PLUGIN_SPAWN_VECTOR);
 
         if (!PlayerDB.isPlayerInDB(player)) {
-            PlayerDB.addPlayerToDB(
+            PlayerDB.addPlayer(
                     player.getLoginChainData().getXUID(),
                     player.getLoginChainData().getClientUUID(),
                     player.getLoginChainData().getUsername(),
@@ -34,8 +35,29 @@ public class JoinAction implements Listener {
             player.sendTitle("§bWelcome!", "§dWe hope you have a great Time on here!", 20, 80, 20);
         }
         else {
-            player.sendPopupJukebox("Welcome back!");
+            player.sendPopupJukebox("Welcome back...");
         }
+
+        plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
+            @Override
+            public void onRun(int currentTick) {
+                SidePanel.sendPlayerName(player);
+            }
+        }, 35, true);
+
+        plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
+            @Override
+            public void onRun(int currentTick) {
+                SidePanel.sendPlayerCoins(player);
+            }
+        }, 60, true);
+
+        plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
+            @Override
+            public void onRun(int currentTick) {
+                SidePanel.sendPlayerSelectedRank(player);
+            }
+        }, 75, true);
 
         plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
             @Override
@@ -45,6 +67,6 @@ public class JoinAction implements Listener {
                     quest.display(player);
                 }
             }
-        }, 60, true);
+        }, 90, true);
     }
 }
