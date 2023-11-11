@@ -62,7 +62,7 @@ public class PlayerQuest {
         this.bossbar_ID = bossBar.getBossBarId();
         player.createBossBar(bossBar);
 
-        PlayerDB.setPlayerQuest(player, this);
+        PlayerDB.setOnePlayerQuest(player, this);
 
         Server.getInstance().getPluginManager().callEvent(new QuestDisplayEvent(player, this));
     }
@@ -71,7 +71,7 @@ public class PlayerQuest {
         if (this.bossbar_ID != 0L) {
             player.removeBossBar(this.bossbar_ID);
             this.bossbar_ID = 0L;
-            PlayerDB.setPlayerQuest(player, this);
+            PlayerDB.setOnePlayerQuest(player, this);
         }
 
         Server.getInstance().getPluginManager().callEvent(new QuestHideEvent(player, this));
