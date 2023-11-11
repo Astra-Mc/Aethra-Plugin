@@ -14,7 +14,7 @@ public class BlockOreMagicGenCooldown extends BlockTransparent implements Custom
     @NotNull
     @Override
     public String getNamespaceId() {
-        return config.PLUGIN_BLOCK_PREFIX + "magic_gen_cooldown";
+        return config.PLUGIN_BLOCK_PREFIX + "magic_ore_gen_cooldown";
     }
 
     @Override
