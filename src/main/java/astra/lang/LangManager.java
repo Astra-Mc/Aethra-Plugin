@@ -2,6 +2,8 @@ package astra.lang;
 
 import astra.lang.languages.de_de;
 import astra.lang.languages.en_gb;
+import astra.mongodb.PlayerDB;
+import cn.nukkit.Player;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -28,15 +30,20 @@ public class LangManager {
 
     public static String getString(LangConfig.Languages language, String identifier){
 
-        switch (language){
-            case ENGLISH_GB:
-                return en_gb_text.get(identifier);
+        return switch (language) {
+            case ENGLISH_GB -> en_gb_text.get(identifier);
+            case GERMAN_DE -> de_de_text.get(identifier);
+            default -> null;
+        };
+    }
 
-            case GERMAN_DE:
-                return de_de_text.get(identifier);
+    public static String getString(Player player, String identifier){
+        LangConfig.Languages language = PlayerDB.getPlayerLanguage(player);
 
-            default:
-                return null;
-        }
+        return switch (language) {
+            case ENGLISH_GB -> en_gb_text.get(identifier);
+            case GERMAN_DE -> de_de_text.get(identifier);
+            default -> null;
+        };
     }
 }
