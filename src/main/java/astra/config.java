@@ -15,4 +15,6 @@ public class config {
     public static final String MONGODB_LOGIN_INFO = "mongodb://localhost:27017";
     public static final String MONGODB_DATABASE = "MongoDB";
     public static final String MONGODB_COLLECTION_PLAYER = "player";
+
+    public static final int MAX_FORM_TIME_OUT_PERIOD = 6000; // 5min
 }

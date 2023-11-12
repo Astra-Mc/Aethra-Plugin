@@ -1,5 +1,6 @@
 package astra.skillsystem;
 
+import astra.config;
 import astra.mongodb.PlayerDB;
 import astra.playerquestsystem.PlayerQuest;
 import astra.playerquestsystem.PlayerQuestBuilder;
@@ -28,6 +29,8 @@ public class SkillSystem {
         form.addButton(new ElementButton("ADD QUEST"));
         form.addButton(new ElementButton("REMOVE ALL QUESTS"));
         player.showFormWindow(form);
+
+        final int[] timeOutStatus = {0};
 
         Server.getInstance().getScheduler().scheduleRepeatingTask(new Task() {
             @Override
@@ -64,6 +67,12 @@ public class SkillSystem {
                             }
                         }
 
+                    }
+                }
+                else {
+                    timeOutStatus[0]++;
+                    if (timeOutStatus[0] > config.MAX_FORM_TIME_OUT_PERIOD){
+                        this.cancel();
                     }
                 }
             }
