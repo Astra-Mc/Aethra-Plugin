@@ -33,7 +33,7 @@ public class LangManager {
         return switch (language) {
             case ENGLISH_GB -> en_gb_text.get(identifier);
             case GERMAN_DE -> de_de_text.get(identifier);
-            default -> null;
+            default -> "<#LANG NOT FOUND: "+language+"#>";
         };
     }
 
@@ -43,7 +43,7 @@ public class LangManager {
         return switch (language) {
             case ENGLISH_GB -> en_gb_text.get(identifier);
             case GERMAN_DE -> de_de_text.get(identifier);
-            default -> null;
+            default -> "<#LANG NOT FOUND: "+language+"#>";
         };
     }
 }
