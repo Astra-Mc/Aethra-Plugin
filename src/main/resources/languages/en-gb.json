@@ -1,3 +1,8 @@
 {
-  "block.name.magic-gen": "Magie Generator"
+  "ui.form.settings.title": "Settings",
+  "ui.form.settings.description": "Change you settings here bla bla bla",
+  "ui.form.settings.display_name_input.title": "Display Name",
+  "ui.form.settings.display_name_input.placeholder": "You display name",
+  "ui.form.settings.language_dropdown.title": "Language",
+  "ui.form.settings.selected_rank_dropdown.title": "Selected Rank"
 }
