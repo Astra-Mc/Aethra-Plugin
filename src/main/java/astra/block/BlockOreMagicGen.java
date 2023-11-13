@@ -1,6 +1,6 @@
 package astra.block;
 
-import astra.config;
+import astra.Config;
 
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
@@ -15,7 +15,7 @@ public class BlockOreMagicGen extends Block implements CustomBlock {
     @NotNull
     @Override
     public String getNamespaceId() {
-        return config.PLUGIN_BLOCK_PREFIX + "magic_ore_gen";
+        return Config.PLUGIN_BLOCK_PREFIX + "magic_ore_gen";
     }
 
     @Override

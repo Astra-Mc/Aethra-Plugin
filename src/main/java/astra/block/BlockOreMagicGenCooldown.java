@@ -1,6 +1,6 @@
 package astra.block;
 
-import astra.config;
+import astra.Config;
 import cn.nukkit.block.BlockTransparent;
 import cn.nukkit.block.customblock.CustomBlock;
 import cn.nukkit.block.customblock.CustomBlockDefinition;
@@ -14,7 +14,7 @@ public class BlockOreMagicGenCooldown extends BlockTransparent implements Custom
     @NotNull
     @Override
     public String getNamespaceId() {
-        return config.PLUGIN_BLOCK_PREFIX + "magic_ore_gen_cooldown";
+        return Config.PLUGIN_BLOCK_PREFIX + "magic_ore_gen_cooldown";
     }
 
     @Override

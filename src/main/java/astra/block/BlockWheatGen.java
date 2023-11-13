@@ -1,6 +1,6 @@
 package astra.block;
 
-import astra.config;
+import astra.Config;
 import cn.nukkit.Player;
 import cn.nukkit.block.BlockTransparentMeta;
 import cn.nukkit.block.customblock.CustomBlock;
@@ -45,7 +45,7 @@ public class BlockWheatGen extends BlockTransparentMeta implements CustomBlock {
     @NotNull
     @Override
     public String getNamespaceId() {
-        return config.PLUGIN_BLOCK_PREFIX + "wheat_gen";
+        return Config.PLUGIN_BLOCK_PREFIX + "wheat_gen";
     }
 
     @Override

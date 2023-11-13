@@ -1,5 +1,5 @@
 name: Astra
 version: 1.0.0
 author: Adrian8115/theaddon, ienis
-main: astra.plugin
+main: astra.Plugin
 api: 1.0.14

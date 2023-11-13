@@ -2,7 +2,7 @@ package astra.mongodb.codec;
 
 import astra.mongodb.MongoDB;
 import astra.mongodb.codec.quests.PlayerQuestCodecProvider;
-import astra.plugin;
+import astra.Plugin;
 import com.mongodb.MongoClientSettings;
 import org.bson.codecs.DoubleCodec;
 import org.bson.codecs.StringCodec;
@@ -19,7 +19,7 @@ public class CodecRegisterer {
                 MongoClientSettings.getDefaultCodecRegistry()
         );
 
-        plugin.getInstance().getLogger().info("REGISTERED CODEC");
+        Plugin.getInstance().getLogger().info("REGISTERED CODEC");
 
         MongoDB.setPlayerCollection(MongoDB.getPlayerCollection().withCodecRegistry(codecRegistry));
     }

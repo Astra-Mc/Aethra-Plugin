@@ -3,7 +3,7 @@ package astra;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Location;
 
-public class config {
+public class Config {
 
     // SERVER SETTINGS
     public static final Location PLUGIN_SPAWN_VECTOR = new Location(0, 100, 0, Level.DIMENSION_OVERWORLD); // player's lobby/spawn position

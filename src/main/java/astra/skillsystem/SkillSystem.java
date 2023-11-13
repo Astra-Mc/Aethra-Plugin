@@ -1,6 +1,6 @@
 package astra.skillsystem;
 
-import astra.config;
+import astra.Config;
 import astra.mongodb.PlayerDB;
 import astra.playerquestsystem.PlayerQuest;
 import astra.playerquestsystem.PlayerQuestBuilder;
@@ -71,7 +71,7 @@ public class SkillSystem {
                 }
                 else {
                     timeOutStatus[0]++;
-                    if (timeOutStatus[0] > config.MAX_FORM_TIME_OUT_PERIOD){
+                    if (timeOutStatus[0] > Config.MAX_FORM_TIME_OUT_PERIOD){
                         this.cancel();
                     }
                 }

@@ -1,7 +1,7 @@
 package astra.lang.languages;
 
 import astra.lang.LangManager;
-import astra.plugin;
+import astra.Plugin;
 import io.leangen.geantyref.TypeToken;
 
 import java.io.InputStream;
@@ -19,7 +19,7 @@ public class en_gb {
 
         HashMap<String, String> data = LangManager.getGson().fromJson(reader, type);
 
-        plugin.getInstance().getLogger().info("INITIALIZED EN-GB\n"+data);
+        Plugin.getInstance().getLogger().info("INITIALIZED EN-GB\n"+data);
 
         return data;
     }

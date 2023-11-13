@@ -1,8 +1,8 @@
 package astra.mongodb;
 
 import astra.mongodb.codec.CodecRegisterer;
-import astra.plugin;
-import astra.config;
+import astra.Plugin;
+import astra.Config;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -38,16 +38,16 @@ public class MongoDB {
     public static void Start() {
         try {
 
-            MongoDB.client = MongoClients.create(config.MONGODB_LOGIN_INFO);
+            MongoDB.client = MongoClients.create(Config.MONGODB_LOGIN_INFO);
 
-            MongoDB.mongoDatabase = client.getDatabase(config.MONGODB_DATABASE);
-            MongoDB.playerCollection = mongoDatabase.getCollection(config.MONGODB_COLLECTION_PLAYER);
+            MongoDB.mongoDatabase = client.getDatabase(Config.MONGODB_DATABASE);
+            MongoDB.playerCollection = mongoDatabase.getCollection(Config.MONGODB_COLLECTION_PLAYER);
 
             CodecRegisterer.RegisterCodecs();
             PlayerDB.Start();
 
         } catch (Exception e) {
-            plugin.getInstance().getLogger().error("Caught MongoDB Exception (while Enabling): " + e + "\n" + e.getMessage());
+            Plugin.getInstance().getLogger().error("Caught MongoDB Exception (while Enabling): " + e + "\n" + e.getMessage());
         }
     }
 
@@ -55,7 +55,7 @@ public class MongoDB {
         try {
             getClient().close();
         } catch (Exception e) {
-            plugin.getInstance().getLogger().error("Caught MongoDB Exception (while Disabling): " + e + "\n" + e.getMessage());
+            Plugin.getInstance().getLogger().error("Caught MongoDB Exception (while Disabling): " + e + "\n" + e.getMessage());
         }
     }
 }

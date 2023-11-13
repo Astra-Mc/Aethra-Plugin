@@ -3,7 +3,7 @@ package astra.listener;
 import astra.block.BlockOreMagicGenCooldown;
 import astra.block.BlockWheatGen;
 import astra.mongodb.PlayerDB;
-import astra.plugin;
+import astra.Plugin;
 import astra.block.BlockOreMagicGen;
 
 import cn.nukkit.Player;
@@ -35,7 +35,7 @@ public class BlockBreakAction implements Listener {
 
                 for (int i = 0; i < 15; i++) {
 
-                    plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
+                    Plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
                         @Override
                         public void onRun(int i) {
                             player.getLevel().addParticleEffect(new Vector3f(
@@ -49,7 +49,7 @@ public class BlockBreakAction implements Listener {
 
                 PlayerDB.setPlayerCoins(player, PlayerDB.getPlayerCoins(player) + 1);
 
-                plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
+                Plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
 
                     @Override
                     public void onRun(int i) {
@@ -58,7 +58,7 @@ public class BlockBreakAction implements Listener {
 
                 }, 1);
 
-                plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
+                Plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
 
                     @Override
                     public void onRun(int i) {
@@ -80,7 +80,7 @@ public class BlockBreakAction implements Listener {
                     PlayerDB.setPlayerCoins(player, PlayerDB.getPlayerCoins(player));
                 }
 
-                plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
+                Plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
 
                     @Override
                     public void onRun(int i) {

@@ -3,7 +3,7 @@ package astra.mongodb;
 import astra.events.coins.CoinsUpdateEvent;
 import astra.lang.LangConfig;
 import astra.mongodb.codec.quests.PlayerQuestCodec;
-import astra.plugin;
+import astra.Plugin;
 import astra.playerquestsystem.PlayerQuest;
 import astra.ranks.RankConfig;
 import astra.sidepanel.SidePanel;
@@ -38,7 +38,7 @@ public class PlayerDB {
 
         MongoDB.getPlayerCollection().insertOne(playerDocument);
 
-        plugin.getInstance().getLogger().info(String.format(
+        Plugin.getInstance().getLogger().info(String.format(
                 "Added Player to PlayerDB\nXUID: %s\nUUID: %s\nNAME: %s\nLANG: %s",
                 xuid,
                 uuid,
@@ -121,7 +121,7 @@ public class PlayerDB {
         Document result = MongoDB.getPlayerCollection().find(Filters.eq("xuid", player.getLoginChainData().getXUID())).first();
         if (result != null) {
             List<String> data = result.get("ranks", List.class);
-            List<RankConfig.Ranks> returnData = List.of();
+            List<RankConfig.Ranks> returnData = new ArrayList<>();
             for (String rank: data) {
                 returnData.add(RankConfig.Ranks.valueOf(rank));
             }
@@ -198,11 +198,13 @@ public class PlayerDB {
         MongoDB.getPlayerCollection().updateOne(filter, update);
     }
     public static void setSelectedPlayerRank(Player player, RankConfig.Ranks rank){
-        Bson filter = Filters.eq("xuid", player.getLoginChainData().getXUID());
-        Bson update = Updates.set("rank", rank);
-        MongoDB.getPlayerCollection().updateOne(filter, update);
+        if (getPlayerRanks(player).contains(rank)) {
+            Bson filter = Filters.eq("xuid", player.getLoginChainData().getXUID());
+            Bson update = Updates.set("selected_rank", rank);
+            MongoDB.getPlayerCollection().updateOne(filter, update);
 
-        SidePanel.sendPlayerSelectedRank(player);
+            SidePanel.sendPlayerSelectedRank(player);
+        }
     }
 
 
