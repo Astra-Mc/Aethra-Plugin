@@ -3,6 +3,7 @@ package astra;
 import astra.block.BlockOreMagicGen;
 import astra.block.BlockOreMagicGenCooldown;
 import astra.block.BlockWheatGen;
+import astra.command.SettingsCommand;
 import astra.command.SkillCommand;
 import astra.lang.LangManager;
 import astra.listener.BlockBreakAction;
@@ -15,11 +16,11 @@ import cn.nukkit.plugin.PluginBase;
 
 import java.util.List;
 
-public class plugin extends PluginBase {
+public class Plugin extends PluginBase {
 
-    private static plugin instance;
+    private static Plugin instance;
 
-    public static plugin getInstance() {
+    public static Plugin getInstance() {
         return instance;
     }
 
@@ -36,7 +37,7 @@ public class plugin extends PluginBase {
     @Override
     public void onEnable() {
         this.getLogger().info("Astra plugin started!");
-        plugin.instance = this;
+        Plugin.instance = this;
 
         MongoDB.Start();
         LangManager.Start();
@@ -47,6 +48,7 @@ public class plugin extends PluginBase {
         getServer().getPluginManager().registerEvents(new JoinAction(), this); // register on player join event
         getServer().getPluginManager().registerEvents(new CoinsUpdateAction(), this); // register Event for Coins update
 
+        getServer().getCommandMap().register("settings", new SettingsCommand());
         getServer().getCommandMap().register("skill", new SkillCommand());
     }
 
