@@ -54,7 +54,7 @@ public class Settings {
 
                         switch (i){
                             case 1 -> {
-                                if (!(response.toString().isBlank())){
+                                if (!(response.toString().isBlank()) && (!Objects.equals(response.toString(), PlayerDB.getPlayName(player)))){
                                     Server.getInstance().getScheduler().scheduleDelayedTask(new Task() {
                                         @Override
                                         public void onRun(int i) {
