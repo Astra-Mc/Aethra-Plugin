@@ -1,6 +1,7 @@
 package astra.settings;
 
 import astra.Config;
+import astra.form.FormConfig;
 import astra.lang.LangConfig;
 import astra.lang.LangManager;
 import astra.mongodb.PlayerDB;
@@ -27,7 +28,7 @@ public class Settings {
 
 
         FormWindowCustom form = new FormWindowCustom(
-                LangManager.getString(player, "ui.form.settings.title"),
+                FormConfig.SEND_SETTINGS_FORM_SYMBOL+LangManager.getString(player, "ui.form.settings.title"),
                 List.of(
                         new ElementLabel(LangManager.getString(player, "ui.form.settings.description")),
                         new ElementInput(LangManager.getString(player, "ui.form.settings.display_name_input.title"), LangManager.getString(player, "ui.form.settings.display_name_input.placeholder"), PlayerDB.getPlayName(player)),
