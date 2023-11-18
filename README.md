@@ -1,4 +1,4 @@
-# Astra-Plugin
+# Aethra-Plugin
 Plugin for Astra-MC written in Java for PowerNukkitX
 
 ### Technical Information:
