@@ -1,9 +1,9 @@
 package astra.listener;
 
-import astra.lang.LangConfig;
 import astra.mongodb.PlayerDB;
 import astra.Plugin;
-import astra.playerquestsystem.PlayerQuest;
+import astra.playerquest.PlayerQuest;
+import astra.plotisland.PlotIsland;
 import astra.sidepanel.SidePanel;
 import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
@@ -24,12 +24,12 @@ public class JoinAction implements Listener {
 
         player.teleport(Config.PLUGIN_SPAWN_VECTOR);
 
-        if (!PlayerDB.isPlayerInDB(player)) {
+        if (!PlayerDB.isInPlayerDB(player)) {
             PlayerDB.addPlayer(
                     player.getLoginChainData().getXUID(),
                     player.getLoginChainData().getClientUUID(),
                     player.getLoginChainData().getUsername(),
-                    LangConfig.Languages.ENGLISH_GB
+                    Config.Languages.ENGLISH_GB
             );
 
             player.sendTitle("§bWelcome!", "§dWe hope you have a great Time on here!", 20, 80, 20);
@@ -62,11 +62,13 @@ public class JoinAction implements Listener {
         Plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
             @Override
             public void onRun(int currentTick) {
-                List<PlayerQuest> quests = PlayerDB.getPlayerQuests(player);
+                List<PlayerQuest> quests = PlayerDB.getPlayerAethraQuests(player);
                 for (PlayerQuest quest : quests) {
                     quest.display(player);
                 }
             }
         }, 90, true);
+
+        PlotIsland.load(player);
     }
 }
