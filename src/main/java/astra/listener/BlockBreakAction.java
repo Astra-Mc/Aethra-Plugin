@@ -47,7 +47,7 @@ public class BlockBreakAction implements Listener {
                     }, i, true);
                 }
 
-                PlayerDB.setPlayerCoins(player, PlayerDB.getPlayerCoins(player) + 1);
+                PlayerDB.setPlayerAethraCoins(player, PlayerDB.getPlayerAethraCoins(player) + 1);
 
                 Plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
 
@@ -74,10 +74,10 @@ public class BlockBreakAction implements Listener {
                 int growth = block.getIntValue("astra:growth");
 
                 if ((growth * 2L -4) >= 0){
-                    PlayerDB.setPlayerCoins(player, PlayerDB.getPlayerCoins(player) + growth * 2L -4);
+                    PlayerDB.setPlayerAethraCoins(player, PlayerDB.getPlayerAethraCoins(player) + growth * 2L -4);
                 }
                 else {
-                    PlayerDB.setPlayerCoins(player, PlayerDB.getPlayerCoins(player));
+                    PlayerDB.setPlayerAethraCoins(player, PlayerDB.getPlayerAethraCoins(player));
                 }
 
                 Plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
