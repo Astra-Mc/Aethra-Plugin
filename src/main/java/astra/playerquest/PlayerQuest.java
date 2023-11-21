@@ -1,4 +1,4 @@
-package astra.playerquestsystem;
+package astra.playerquest;
 
 import astra.events.quests.*;
 import astra.mongodb.PlayerDB;
@@ -24,25 +24,25 @@ public class PlayerQuest {
     }
 
     public void start(Player player){
-        PlayerDB.addPlayerQuest(player, this);
+        PlayerDB.addPlayerAethraQuest(player, this);
 
         Server.getInstance().getPluginManager().callEvent(new QuestStartEvent(player, this));
     }
 
     public void destroy(Player player){
-        PlayerDB.removePlayerQuest(player, this);
+        PlayerDB.removePlayerAethraQuest(player, this);
 
         Server.getInstance().getPluginManager().callEvent(new QuestDestroyEvent(player, this));
     }
 
     public void complete(Player player){
-        PlayerDB.removePlayerQuest(player, this);
+        PlayerDB.removePlayerAethraQuest(player, this);
 
         Server.getInstance().getPluginManager().callEvent(new QuestCompleteEvent(player, this));
     }
 
     public void fail(Player player){
-        PlayerDB.removePlayerQuest(player, this);
+        PlayerDB.removePlayerAethraQuest(player, this);
 
         Server.getInstance().getPluginManager().callEvent(new QuestFailEvent(player, this));
     }
@@ -62,7 +62,7 @@ public class PlayerQuest {
         this.bossbar_ID = bossBar.getBossBarId();
         player.createBossBar(bossBar);
 
-        PlayerDB.setOnePlayerQuest(player, this);
+        PlayerDB.setPlayerAethraQuest(player, this);
 
         Server.getInstance().getPluginManager().callEvent(new QuestDisplayEvent(player, this));
     }
@@ -71,7 +71,7 @@ public class PlayerQuest {
         if (this.bossbar_ID != 0L) {
             player.removeBossBar(this.bossbar_ID);
             this.bossbar_ID = 0L;
-            PlayerDB.setOnePlayerQuest(player, this);
+            PlayerDB.setPlayerAethraQuest(player, this);
         }
 
         Server.getInstance().getPluginManager().callEvent(new QuestHideEvent(player, this));

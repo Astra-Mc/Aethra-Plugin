@@ -1,6 +1,6 @@
 package astra.mongodb.codec.quests;
 
-import astra.playerquestsystem.PlayerQuest;
+import astra.playerquest.PlayerQuest;
 import org.bson.codecs.Codec;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;

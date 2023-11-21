@@ -1,6 +1,6 @@
 package astra.events.quests;
 
-import astra.playerquestsystem.PlayerQuest;
+import astra.playerquest.PlayerQuest;
 import cn.nukkit.Player;
 import cn.nukkit.event.Event;
 import cn.nukkit.event.HandlerList;

@@ -1,4 +1,4 @@
-package astra.playerquestsystem;
+package astra.playerquest;
 
 import cn.nukkit.utils.BossBarColor;
 

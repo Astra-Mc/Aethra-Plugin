@@ -1,6 +1,6 @@
 package astra.mongodb.codec.quests;
 
-import astra.playerquestsystem.PlayerQuest;
+import astra.playerquest.PlayerQuest;
 import cn.nukkit.utils.BossBarColor;
 import org.bson.BsonReader;
 import org.bson.BsonType;
@@ -12,9 +12,9 @@ import org.bson.codecs.configuration.CodecRegistry;
 
 public class PlayerQuestCodec implements Codec<PlayerQuest> {
 
-    private Codec<String> stringCodec;
-    private Codec<Long> longCodec;
-    private Codec<Float> floatCodec;
+    private final Codec<String> stringCodec;
+    private final Codec<Long> longCodec;
+    private final Codec<Float> floatCodec;
 
     public PlayerQuestCodec(CodecRegistry registry){
         this.stringCodec = registry.get(String.class);
