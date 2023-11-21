@@ -29,8 +29,7 @@ public class Plugin extends PluginBase {
         Block.registerCustomBlock(List.of(
                 BlockOreMagicGen.class,
                 BlockOreMagicGenCooldown.class,
-                BlockWheatGen.class
-        )); // register Blocks
+                BlockWheatGen.class)); // register Blocks
 
     }
 
@@ -45,8 +44,8 @@ public class Plugin extends PluginBase {
         Level.setCanRandomTick(new BlockWheatGen().getId(), true);
 
         getServer().getPluginManager().registerEvents(new BlockBreakAction(), this); // register on block break event
-        getServer().getPluginManager().registerEvents(new JoinAction(), this); // register on player join event
         getServer().getPluginManager().registerEvents(new CoinsUpdateAction(), this); // register Event for Coins update
+        getServer().getPluginManager().registerEvents(new JoinAction(), this); // register on player join event
 
         getServer().getCommandMap().register("settings", new SettingsCommand());
         getServer().getCommandMap().register("skill", new SkillCommand());
