@@ -1,11 +1,8 @@
 package astra.settings;
 
 import astra.Config;
-import astra.form.FormConfig;
-import astra.lang.LangConfig;
 import astra.lang.LangManager;
 import astra.mongodb.PlayerDB;
-import astra.ranks.RankConfig;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.form.element.*;
@@ -18,7 +15,7 @@ import java.util.stream.Stream;
 public class Settings {
     public static void Show(Player player){
 
-        List<String> languages = Stream.of(LangConfig.Languages.values())
+        List<String> languages = Stream.of(Config.Languages.values())
                 .map(Enum::name)
                 .toList();
 
@@ -28,10 +25,10 @@ public class Settings {
 
 
         FormWindowCustom form = new FormWindowCustom(
-                FormConfig.SEND_SETTINGS_FORM_SYMBOL+LangManager.getString(player, "ui.form.settings.title"),
+                Config.FORM_SEND_SETTINGS_SYMBOL+LangManager.getString(player, "ui.form.settings.title"),
                 List.of(
                         new ElementLabel(LangManager.getString(player, "ui.form.settings.description")),
-                        new ElementInput(LangManager.getString(player, "ui.form.settings.display_name_input.title"), LangManager.getString(player, "ui.form.settings.display_name_input.placeholder"), PlayerDB.getPlayName(player)),
+                        new ElementInput(LangManager.getString(player, "ui.form.settings.display_name_input.title"), LangManager.getString(player, "ui.form.settings.display_name_input.placeholder"), PlayerDB.getPlayerName(player)),
                         new ElementDropdown(LangManager.getString(player, "ui.form.settings.language_dropdown.title"), languages, languages.indexOf(PlayerDB.getPlayerLanguage(player).name())),
                         new ElementDropdown(LangManager.getString(player, "ui.form.settings.selected_rank_dropdown.title"), ranks,  ranks.indexOf(PlayerDB.getSelectedPlayerRank(player).name()))
                 ),
@@ -54,11 +51,11 @@ public class Settings {
 
                         switch (i){
                             case 1 -> {
-                                if (!(response.toString().isBlank()) && (!Objects.equals(response.toString(), PlayerDB.getPlayName(player)))){
+                                if (!(response.toString().isBlank()) && (!Objects.equals(response.toString(), PlayerDB.getPlayerName(player)))){
                                     Server.getInstance().getScheduler().scheduleDelayedTask(new Task() {
                                         @Override
                                         public void onRun(int i) {
-                                            PlayerDB.setPLayerName(player, response.toString());
+                                            PlayerDB.setPlayerName(player, response.toString());
                                         }
                                     }, count_tasks*20, true);
                                     count_tasks++;
@@ -66,7 +63,7 @@ public class Settings {
                             }
                             case 2 -> {
                                 if (!(Objects.equals(response.toString(), PlayerDB.getPlayerLanguage(player).name()))) {
-                                    PlayerDB.setPlayerLanguage(player, LangConfig.Languages.valueOf(response.toString()));
+                                    PlayerDB.setPlayerLanguage(player, Config.Languages.valueOf(response.toString()));
                                 }
 
                             }
@@ -75,7 +72,7 @@ public class Settings {
                                     Server.getInstance().getScheduler().scheduleDelayedTask(new Task() {
                                         @Override
                                         public void onRun(int i) {
-                                            PlayerDB.setSelectedPlayerRank(player, RankConfig.Ranks.valueOf(response.toString()));
+                                            PlayerDB.setSelectedPlayerRank(player, Config.Ranks.valueOf(response.toString()));
                                         }
                                     }, count_tasks*20, true);
                                     count_tasks++;
@@ -88,7 +85,7 @@ public class Settings {
                 }
                 else {
                     timeOutStatus[0]++;
-                    if (timeOutStatus[0] > Config.MAX_FORM_TIME_OUT_PERIOD){
+                    if (timeOutStatus[0] > Config.FORM_MAX_TIME_OUT_PERIOD){
                         this.cancel();
                     }
                 }
