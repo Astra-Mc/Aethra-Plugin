@@ -2,8 +2,8 @@ package astra.skillsystem;
 
 import astra.Config;
 import astra.mongodb.PlayerDB;
-import astra.playerquestsystem.PlayerQuest;
-import astra.playerquestsystem.PlayerQuestBuilder;
+import astra.playerquest.PlayerQuest;
+import astra.playerquest.PlayerQuestBuilder;
 import astra.skillsystem.skills.SkillFarming;
 import astra.skillsystem.skills.SkillMining;
 import cn.nukkit.Player;
@@ -60,7 +60,7 @@ public class SkillSystem {
                         }
 
                         case "REMOVE ALL QUESTS" -> {
-                            List<PlayerQuest> quests = PlayerDB.getPlayerQuests(player);
+                            List<PlayerQuest> quests = PlayerDB.getPlayerAethraQuests(player);
                             for (PlayerQuest quest1 : quests) {
                                 quest1.hide(player);
                                 quest1.destroy(player);
@@ -71,7 +71,7 @@ public class SkillSystem {
                 }
                 else {
                     timeOutStatus[0]++;
-                    if (timeOutStatus[0] > Config.MAX_FORM_TIME_OUT_PERIOD){
+                    if (timeOutStatus[0] > Config.FORM_MAX_TIME_OUT_PERIOD){
                         this.cancel();
                     }
                 }
