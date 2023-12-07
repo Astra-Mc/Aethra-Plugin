@@ -34,7 +34,7 @@ public class LangManager {
         return switch (language) {
             case ENGLISH_GB -> en_gb_text.get(identifier);
             case GERMAN_DE -> de_de_text.get(identifier);
-            default -> "<#ID NOT FOUND | LANG: "+language+" | ID: "+identifier+" #>";
+            default -> "<#ERROR | LANG: "+language+" | ID: "+identifier+" #>";
         };
     }
 
@@ -46,7 +46,7 @@ public class LangManager {
         return switch (language) {
             case ENGLISH_GB -> en_gb_text.get(identifier);
             case GERMAN_DE -> de_de_text.get(identifier);
-            default -> "<#ID NOT FOUND | LANG: "+language+" | ID: "+identifier+" #>";
+            default -> "<#ERROR | LANG: "+language+" | ID: "+identifier+" #>";
         };
     }
 }
