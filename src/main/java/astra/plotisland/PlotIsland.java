@@ -14,11 +14,10 @@ public class PlotIsland {
             File fileDat = new File(Config.PLOT_ISLAND_WORLD_FOLDER + id + Config.PLOT_ISLAND_LEVEL_FILE);
 
             if (fileDat.exists()){
-                Server.getInstance().loadLevel(Config.PLOT_ISLAND_WORLD_FOLDER + id + Config.PLOT_ISLAND_LEVEL_FILE);
+                Server.getInstance().loadLevel(id.toString());
             }
             else {
-                long SEED = 0;
-                Server.getInstance().generateLevel(id.toString(), SEED, PlotIslandGenerator.class);
+                Server.getInstance().generateLevel(id.toString(), 0, PlotIslandGenerator.class);
             }
         }
     }
