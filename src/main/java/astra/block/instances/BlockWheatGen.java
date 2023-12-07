@@ -1,6 +1,7 @@
-package astra.block;
+package astra.block.instances;
 
 import astra.Config;
+import astra.block.BlockAethra;
 import cn.nukkit.Player;
 import cn.nukkit.block.BlockTransparentMeta;
 import cn.nukkit.block.customblock.CustomBlock;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockWheatGen extends BlockTransparentMeta implements CustomBlock {
+public class BlockWheatGen extends BlockAethra implements CustomBlock {
     public static final IntBlockProperty GROWTH = new IntBlockProperty("astra:growth", false, 7);
     public static final List<Permutation> permutations = new ArrayList<>();
 
@@ -45,12 +46,7 @@ public class BlockWheatGen extends BlockTransparentMeta implements CustomBlock {
     @NotNull
     @Override
     public String getNamespaceId() {
-        return Config.PLUGIN_BLOCK_PREFIX + "wheat_gen";
-    }
-
-    @Override
-    public void onPlayerRightClick(@NotNull Player player, Item item, BlockFace face, Vector3 clickPoint) {
-        grow();
+        return Config.BLOCK_NAMESPACE_PREFIX + "wheat_gen";
     }
 
     @Override
@@ -88,7 +84,7 @@ public class BlockWheatGen extends BlockTransparentMeta implements CustomBlock {
                 .builder(this, "")
                 .breakTime(0)
                 .collisionBox(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0))
-                .geometry("geometry.atlic.wheat_gen")
+                .geometry("geometry.astra.wheat_gen")
                 .permutations(permutations.toArray(new Permutation[0]))
                 .build();
     }

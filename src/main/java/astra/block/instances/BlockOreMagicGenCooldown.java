@@ -1,6 +1,7 @@
-package astra.block;
+package astra.block.instances;
 
 import astra.Config;
+import astra.block.BlockAethra;
 import cn.nukkit.block.BlockTransparent;
 import cn.nukkit.block.customblock.CustomBlock;
 import cn.nukkit.block.customblock.CustomBlockDefinition;
@@ -9,12 +10,12 @@ import cn.nukkit.item.Item;
 import cn.nukkit.math.Vector3f;
 import org.jetbrains.annotations.NotNull;
 
-public class BlockOreMagicGenCooldown extends BlockTransparent implements CustomBlock {
+public class BlockOreMagicGenCooldown extends BlockAethra implements CustomBlock {
 
     @NotNull
     @Override
     public String getNamespaceId() {
-        return Config.PLUGIN_BLOCK_PREFIX + "magic_ore_gen_cooldown";
+        return Config.BLOCK_NAMESPACE_PREFIX + "magic_ore_gen_cooldown";
     }
 
     @Override

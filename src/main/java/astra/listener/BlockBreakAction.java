@@ -1,22 +1,26 @@
 package astra.listener;
 
-import astra.block.BlockOreMagicGenCooldown;
-import astra.block.BlockWheatGen;
+import astra.ability.mining.Fortune;
+import astra.block.instances.BlockOreMagicGenCooldown;
+import astra.block.instances.BlockWheatGen;
 import astra.mongodb.PlayerDB;
 import astra.Plugin;
-import astra.block.BlockOreMagicGen;
+import astra.block.instances.BlockOreMagicGen;
 
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
+import cn.nukkit.item.Item;
 import cn.nukkit.level.Sound;
+import cn.nukkit.math.MathHelper;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.math.Vector3f;
 import cn.nukkit.network.protocol.types.GameType;
 import cn.nukkit.scheduler.Task;
 
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class BlockBreakAction implements Listener {
@@ -47,7 +51,17 @@ public class BlockBreakAction implements Listener {
                     }, i, true);
                 }
 
-                PlayerDB.setPlayerAethraCoins(player, PlayerDB.getPlayerAethraCoins(player) + 1);
+                event.setDrops(new Item[]{});
+
+                ArrayList<Item> drops = new ArrayList<Item>();
+
+                int count = MathHelper.floor(Fortune.getData(player) / ((BlockOreMagicGen) block).getAbilityDropFactor());
+
+                for (int i = 0; i < count; i++) {
+                    drops.add(block.getDrops(Item.AIR_ITEM)[0]);
+                }
+
+                player.giveItem(drops.toArray(new Item[0]));
 
                 Plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
 
@@ -67,17 +81,15 @@ public class BlockBreakAction implements Listener {
 
                 }, 500);
 
+
             }
         }
         else if (block.getId() == BLOCK_WHEAT_GEN) {
             if (GameType.from(player.gamemode) == GameType.SURVIVAL) {
                 int growth = block.getIntValue("astra:growth");
 
-                if ((growth * 2L -4) >= 0){
-                    PlayerDB.setPlayerAethraCoins(player, PlayerDB.getPlayerAethraCoins(player) + growth * 2L -4);
-                }
-                else {
-                    PlayerDB.setPlayerAethraCoins(player, PlayerDB.getPlayerAethraCoins(player));
+                if (growth == 7){
+                    PlayerDB.addPlayerAethraCoins(player,  + 10);
                 }
 
                 Plugin.getInstance().getServer().getScheduler().scheduleDelayedTask(new Task() {
