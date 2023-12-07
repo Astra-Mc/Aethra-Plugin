@@ -41,6 +41,8 @@ public class LangManager {
     public static String getString(Player player, String identifier){
         Config.Languages language = PlayerDB.getPlayerLanguage(player);
 
+        assert language != null;
+
         return switch (language) {
             case ENGLISH_GB -> en_gb_text.get(identifier);
             case GERMAN_DE -> de_de_text.get(identifier);
